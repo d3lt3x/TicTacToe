@@ -1,6 +1,7 @@
 package me.delta.tictactoe;
 
 import javafx.scene.Scene;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Timer;
@@ -19,6 +20,7 @@ public class Game {
 
         this.scene = stage.getScene();
         this.currPlayer = player;
+        ((Text)this.scene.lookup("#pir")).setText("Player in row: " + player.toUpperCase());
         clearGame();
     }
 
@@ -31,9 +33,11 @@ public class Game {
         this.board = new String[9];
         this.playCount = 0;
         paused = false;
+        this.scene.lookup("#pir").setVisible(true);
     }
 
     private void set(String player, int pos) {
+
         this.scene.lookup("#" + player + pos).setVisible(true);
     }
 
@@ -52,6 +56,8 @@ public class Game {
         if (this.currPlayer.equals("x"))
             this.currPlayer = "o";
         else this.currPlayer = "x";
+
+        ((Text)this.scene.lookup("#pir")).setText("Player in row: " + this.currPlayer.toUpperCase());
 
         if (this.playCount < 3)
             return;
@@ -85,6 +91,7 @@ public class Game {
     private void declareWinner(String winner) {
 
         paused = true;
+        this.scene.lookup("#pir").setVisible(false);
         System.out.println(winner + " won");
         scene.lookup("#" + winner + "won").setVisible(true);
 

@@ -20,7 +20,6 @@ public class BoardController {
     public void startGame(Stage stage, String player) {
 
         this.stage = stage;
-
         this.game = new Game(stage, player);
     }
 
