@@ -1,6 +1,5 @@
 package me.delta.tictactoe;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -8,6 +7,7 @@ import javafx.stage.Stage;
 public class BoardController {
     private Game game;
     private Stage stage;
+
     public void bn(MouseEvent mouseEvent) {
 
         if (game == null)
@@ -16,17 +16,19 @@ public class BoardController {
         String id = ((Button) mouseEvent.getSource()).getId();
         game.pick(id);
     }
-    public Game startGame(Stage stage, String player) {
+
+    public void startGame(Stage stage, String player) {
 
         this.stage = stage;
 
         this.game = new Game(stage, player);
-        return this.game;
     }
-    public void onClose(ActionEvent actionEvent) {
+
+    public void onClose() {
         this.stage.close();
     }
-    public void onRestart(ActionEvent actionEvent) {
+
+    public void onRestart() {
         this.game.clearGame();
     }
 }
